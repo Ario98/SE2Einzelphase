@@ -50,35 +50,46 @@ public class MainActivity extends AppCompatActivity {
         TextView displayResult = (TextView) findViewById(R.id.textView4);
         String mNummer = matrikelNummer.getText().toString();
 
-        //array creation
+
+        int[] arrayMatrikelNummer = createArray(mNummer);
+
+        int randomIndexOne = new Random().nextInt(arrayMatrikelNummer.length);
+        int randomIndexTwo = new Random().nextInt(arrayMatrikelNummer.length);
+
+        //if the 2 random numbers are the same change the second one
+        while (randomIndexOne == randomIndexTwo) {
+            randomIndexTwo = new Random().nextInt(arrayMatrikelNummer.length);
+        }
+
+        int num1 = arrayMatrikelNummer[randomIndexOne];
+        int num2 = arrayMatrikelNummer[randomIndexTwo];
+        int gcd = 1;
+
+        gcd = getGCD(num1, num2, gcd);
+
+        if (gcd > 1) {
+            displayResult.setText("The indexes of the randomly picked numbers that have the GCM > 1 are" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
+        } else {
+            displayResult.setText("The two random picked numbers do not have a GCM >1. The indexes of picked numbers are" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
+        }
+    }
+
+    private int getGCD(int num1, int num2, int gcd) {
+        for (int i = 1; i <= num1 && i <= num2; i++) {
+            if (num1 % i == 0 && num2 % i == 0)
+                gcd = i;
+        }
+        return gcd;
+    }
+
+    private int[] createArray(String mNummer) {
         int length = mNummer.length();
         int[] arr = new int[length];
 
         for (int i = 0; i < length; i++) {
             arr[i] = Character.getNumericValue(mNummer.charAt(i));
         }
-
-        int randomIndexOne = new Random().nextInt(arr.length);
-        int randomIndexTwo = new Random().nextInt(arr.length);
-
-        while (randomIndexOne == randomIndexTwo) {
-            randomIndexTwo = new Random().nextInt(arr.length);
-        }
-
-        int num1 = arr[randomIndexOne];
-        int num2 = arr[randomIndexTwo];
-        int gcd = 1;
-
-        for (int i = 1; i <= num1 && i <= num2; i++) {
-            if (num1 % i == 0 && num2 % i == 0)
-                gcd = i;
-        }
-
-        if (gcd > 1) {
-            displayResult.setText("The indexes of the randomly picked numbers that have the GCM > 1 are" + " " + randomIndexOne + " " + randomIndexTwo);
-        } else {
-            displayResult.setText("The two random picked numbers do not have a GCM >1. The indexes of picked numbers are" + " " + randomIndexOne + " " + randomIndexTwo);
-        }
+        return arr;
     }
 
     String serverResponse;
