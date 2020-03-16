@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String serverResponse;
-
     private String dataExchange() {
         Thread thread = new Thread(new Runnable() {
             @Override
