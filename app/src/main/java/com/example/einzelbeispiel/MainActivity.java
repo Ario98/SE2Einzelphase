@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,16 +49,20 @@ public class MainActivity extends AppCompatActivity {
         EditText matrikelNummer = (EditText) findViewById(R.id.Matrikelnummer);
         TextView displayResult = (TextView) findViewById(R.id.textView4);
         String mNummer = matrikelNummer.getText().toString();
-        int length = mNummer.length();
 
+        //array creation
+        int length = mNummer.length();
         int[] arr = new int[length];
 
         for (int i = 0; i < length; i++) {
             arr[i] = Character.getNumericValue(mNummer.charAt(i));
         }
 
-        int num1 = arr[0];
-        int num2 = arr[1];
+        int randomIndexOne = new Random().nextInt(arr.length);
+        int randomIndexTwo = new Random().nextInt(arr.length);
+
+        int num1 = arr[randomIndexOne];
+        int num2 = arr[randomIndexTwo];
         int gcd = 1;
 
         for (int i = 1; i <= num1 && i <= num2; i++) {
@@ -66,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (gcd > 1) {
-            displayResult.setText("The indexes of the numbers are 1 and 2");
+            displayResult.setText("The indexes of the randomly picked numbers that have the GCM > 1 are" + " " + randomIndexOne + " " + randomIndexTwo);
         } else {
-            displayResult.setText("Nichts");
+            displayResult.setText("The two random picked numbers do not have a GCM >1. The indexes of picked numbers are" + " " + randomIndexOne + " " + randomIndexTwo);
         }
     }
 
