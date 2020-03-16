@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView displayResult = (TextView) findViewById(R.id.textView3);
+        final TextView displayResult = (TextView) findViewById(R.id.serverAnswer);
 
-        Button calculateButton = (Button) findViewById(R.id.buttonCalculate);
+        Button calculateButton = (Button) findViewById(R.id.calculateButton);
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button sendButton = (Button) findViewById(R.id.button);
+        Button sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculateDivisors() {
         EditText matrikelNummer = (EditText) findViewById(R.id.Matrikelnummer);
-        TextView displayResult = (TextView) findViewById(R.id.textView4);
+        TextView displayResult = (TextView) findViewById(R.id.calculationAnswer);
         String mNummer = matrikelNummer.getText().toString();
 
 
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         gcd = getGCD(num1, num2, gcd);
 
         if (gcd > 1) {
-            displayResult.setText("The indexes of the randomly picked numbers that have the GCM > 1 are" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
+            displayResult.setText("Erfolg! Die Indizes von zwei zufällig ausgewählten Zahlen, die einen größten gemeinsamen Teiler > 1 haben, sind:" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
         } else {
-            displayResult.setText("The two random picked numbers do not have a GCM >1. The indexes of picked numbers are" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
+            displayResult.setText("Negativ! Die beiden zufällig ausgewählten Zahlen haben keinen größten gemeinsamen Teiler > 1. Die Indizes der Zahlen sind:" + " [" + randomIndexOne + "] [" + randomIndexTwo + "]");
         }
     }
 
