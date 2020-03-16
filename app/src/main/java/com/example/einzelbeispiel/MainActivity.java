@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         int randomIndexOne = new Random().nextInt(arr.length);
         int randomIndexTwo = new Random().nextInt(arr.length);
 
+        while (randomIndexOne == randomIndexTwo) {
+            randomIndexTwo = new Random().nextInt(arr.length);
+        }
+
         int num1 = arr[randomIndexOne];
         int num2 = arr[randomIndexTwo];
         int gcd = 1;
